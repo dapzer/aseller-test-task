@@ -1,14 +1,25 @@
-import React, { FC } from 'react'
-import { Typography } from '@mui/material'
+import React, { FC, useEffect, useState } from 'react'
+import { Container, Typography } from '@mui/material'
+import { ProductsTable } from '@/components/home-page/ProductsTable'
+import { ProductType } from '@/types/ProductType'
+import products from '@/mock/products.json'
 
 interface HomePageProps {
 
 }
 
 export const HomePage: FC<HomePageProps> = () => {
+  const [productList, setProductList] = useState<ProductType[]>()
+
+  useEffect(() => {
+    // Имитация получение продуктов с апи
+    setProductList(products)
+  }, [])
+
   return (
-    <div>
-      <Typography variant='h1'>Hi!</Typography>
-    </div>
+    <Container maxWidth='xl'>
+      <Typography variant='h1'>Список товаров</Typography>
+      <ProductsTable products={productList} />
+    </Container>
   )
 }
