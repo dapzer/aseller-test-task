@@ -15,7 +15,8 @@ export const productsDataGridStyles: SxProps = {
     minHeight: 'unset !important',
     maxHeight: 'unset !important',
     height: 'fit-content',
-    whiteSpace: "unset !important"
+    whiteSpace: "unset !important",
+    padding: "0 24px"
   }
 }
 
