@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     port: 3000
   },
+  base: "/aseller-test-task/",
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
