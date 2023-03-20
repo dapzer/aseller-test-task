@@ -8,31 +8,33 @@ import { productColumns } from '@/components/home-page/ProductsTable/model'
 
 interface ProductsTableProps {
   products?: ProductType[]
+  isLoading: boolean
 }
 
-
 export const ProductsTable: FC<ProductsTableProps> = (props) => {
-  const { products } = props
+  const {
+    products = [],
+    isLoading,
+  } = props
   const [selectedRow, setSelectedRow] = useState<number | null>(null)
 
   return (
     <>
-      {!!products?.length && (
-        <Box height={'600px'} minHeight='600px' width={'100%'} flex={1}>
-          <DataGrid
-            sx={productsDataGridStyles}
-            columns={productColumns}
-            rows={products}
-            initialState={{
-              pagination: { paginationModel: { pageSize: 5 } },
-            }}
-            pageSizeOptions={[5, 10, 25]}
-            onRowClick={(params) => setSelectedRow(params.row.id)}
-            disableVirtualization
-            disableRowSelectionOnClick
-          />
-        </Box>
-      )}
+      <Box height={'600px'} minHeight='600px' width={'100%'} flex={1}>
+        <DataGrid
+          sx={productsDataGridStyles}
+          columns={productColumns}
+          rows={products}
+          loading={isLoading}
+          initialState={{
+            pagination: { paginationModel: { pageSize: 5 } },
+          }}
+          pageSizeOptions={[5, 10, 25]}
+          onRowClick={(params) => setSelectedRow(params.row.id)}
+          disableVirtualization
+          disableRowSelectionOnClick
+        />
+      </Box>
 
       {selectedRow && products && (
         <ProductModal handleOpen={() => setSelectedRow(null)}
